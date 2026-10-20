@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="LendTrack.Tests/LendTrack.Tests.csproj" />
+  <Project Path="LendTrack/LendTrack.csproj" />
+</Solution>
