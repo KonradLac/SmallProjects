@@ -6,5 +6,6 @@ internal enum ItemType : ushort
     Equipment,
     Material,
     Electronics,
+    Furniture,
     Other
 }

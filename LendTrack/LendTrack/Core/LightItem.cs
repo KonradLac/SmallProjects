@@ -2,6 +2,8 @@
 
 internal class LightItem : Item
 {
+    #region Constructor
+    //Constructor
     public LightItem(string name, string description, ItemType category, bool isAvailable = true)
     {
         Name = name;
@@ -9,7 +11,13 @@ internal class LightItem : Item
         Category = category;
         IsAvailable = isAvailable;
     }
+    #endregion
 
+    #region Methods
+    //Methods
+    /// <summary>
+    /// Method to borrow the light item. If the item is available, it marks it as not available and displays a success message. If the item is not available, it displays an error message.
+    /// </summary>
     public override void Borrow()
     {
         if(!IsAvailable)
@@ -27,6 +35,9 @@ internal class LightItem : Item
         }
     }
 
+    /// <summary>
+    /// Method to display the details of the light item, including its name, description, category, and availability status. The details are displayed in cyan color for better visibility.
+    /// </summary>
     public override void DisplayDetails()
     {
         Console.ForegroundColor = ConsoleColor.Cyan;
@@ -35,6 +46,26 @@ internal class LightItem : Item
         Console.WriteLine($"Category: {Category}");
         Console.WriteLine($"Availability: {(IsAvailable ? "Available" : "Not Available")}");
         Console.ResetColor();
+    }
+
+    /// <summary>
+    /// Method to return the light item. If the item is already available, it displays a warning message. If the item is not available, it marks it as available and displays a success message.
+    /// </summary>
+    public override void Return()
+    {
+        if (IsAvailable)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"Heavy item '{Name}' is already available.");
+            Console.ResetColor();
+        }
+        else
+        {
+            IsAvailable = true;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Heavy item '{Name}' has been returned and is now available.");
+            Console.ResetColor();
+        }
     }
 
     public override string ToString()
@@ -55,4 +86,5 @@ internal class LightItem : Item
     {
         return Id.GetHashCode();
     }
+    #endregion
 }

@@ -1,11 +1,15 @@
-﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("LendTrack.Tests")]
+﻿using LendTrack.Core;
+
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("LendTrack.Tests")]
 
 namespace LendTrack.ConsoleInterface;
 
 internal class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Placeholder");
+        Console.ResetColor();
     }
 }
