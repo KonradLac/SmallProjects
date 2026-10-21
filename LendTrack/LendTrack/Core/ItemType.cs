@@ -1,6 +1,6 @@
 ﻿namespace LendTrack.Core;
 
-internal enum ItemType : ushort
+internal enum ItemType : byte
 {
     Tool,
     Equipment,

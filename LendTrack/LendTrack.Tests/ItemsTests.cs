@@ -5,25 +5,7 @@ namespace LendTrack.Tests;
 public class ItemsTests
 {
     [Fact]
-    public void HeavyItemInitialiseTest()
-    {
-        // Arrange
-        string? name = "Test Heavy Item";
-        string description = "A test heavy item";
-        ItemType category = ItemType.Electronics;
-
-        // Act
-        HeavyItem heavyItem = new(name, description, category);
-
-        // Assert
-        Assert.Equal(name, heavyItem.Name);
-        Assert.Equal(description, heavyItem.Description);
-        Assert.Equal(category, heavyItem.Category);
-        Assert.True(heavyItem.IsAvailable);
-    }
-
-    [Fact]
-    public void LightItemInitialiseTest()
+    public void ItemInitialiseTest()
     {
         // Arrange
         string? name = "Test Light Item";
@@ -31,44 +13,92 @@ public class ItemsTests
         ItemType category = ItemType.Tool;
 
         // Act
-        LightItem lightItem = new(name, description, category);
+        Item testItem = new(name, description, category, 1);
 
         // Assert
-        Assert.Equal(name, lightItem.Name);
-        Assert.Equal(description, lightItem.Description);
-        Assert.Equal(category, lightItem.Category);
-        Assert.True(lightItem.IsAvailable);
+        Assert.Equal(name, testItem.Name);
+        Assert.Equal(description, testItem.Description);
+        Assert.Equal(category, testItem.Category);
+        Assert.True(testItem.IsAvailable);
     }
 
     [Fact]
-    public void HeavyItemBorrowTest()
+    public void ItemBorrowTest()
     {
         // Arrange
         string? name = "Test Heavy Item";
         string description = "A test heavy item";
         ItemType category = ItemType.Electronics;
-        HeavyItem heavyItem = new(name, description, category);
+        Item testItem = new(name, description, category, 1);
 
         // Act
-        heavyItem.Borrow();
+        testItem.Borrow();
 
         // Assert
-        Assert.False(heavyItem.IsAvailable);
+        Assert.False(testItem.IsAvailable);
     }
 
     [Fact]
-    public void LightItemBorrowTest()
+    public void ItemReturnTest()
     {
         // Arrange
-        string? name = "Test Light Item";
-        string description = "A test light item";
-        ItemType category = ItemType.Tool;
-        LightItem lightItem = new(name, description, category);
+        string? name = "Test Heavy Item";
+        string description = "A test heavy item";
+        ItemType category = ItemType.Electronics;
+        Item testItem = new(name, description, category, 1);
 
         // Act
-        lightItem.Borrow();
+        testItem.Borrow(); // First borrow the item
+        testItem.ReturnItem(); // Then return the item
 
         // Assert
-        Assert.False(lightItem.IsAvailable);
+        Assert.True(testItem.IsAvailable);
+    }
+
+    [Fact]
+    public void ItemInitialiseWithNullNameTest()
+    {
+        // Arrange
+        string? name = null;
+        string description = "A test light item";
+        ItemType category = ItemType.Tool;
+
+        // Act & Assert
+        Assert.Throws<ArgumentException>(() => new Item(name, description, category, 1));
+    }
+
+    [Fact]
+    public void ItemInitialiseWithEmptyNameTest()
+    {
+        // Arrange
+        string? name = "";
+        string description = "A test light item";
+        ItemType category = ItemType.Tool;
+
+        // Act & Assert
+        Assert.Throws<ArgumentException>(() => new Item(name, description, category, 1));
+    }
+
+    [Fact]
+    public void ItemInitialiseWithShortNameTest()
+    {
+        // Arrange
+        string? name = "A";
+        string description = "A test light item";
+        ItemType category = ItemType.Tool;
+
+        // Act & Assert
+        Assert.Throws<ArgumentException>(() => new Item(name, description, category, 1));
+    }
+
+    [Fact]
+    public void ItemInitialiseWithNegativeMaintenance()
+    {
+        string? name = "A";
+        string description = "A test light item";
+        ItemType category = ItemType.Tool;
+
+        // Act & Assert
+        Assert.Throws<ArgumentException>(() => new Item(name, description, category, -1));
     }
 }

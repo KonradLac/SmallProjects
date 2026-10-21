@@ -87,7 +87,7 @@ internal class Loan
     /// </summary>
     public void ReturnItem()
     {
-        BorrowedItem.Return();
+        BorrowedItem.ReturnItem();
         Borrower.TakenLoans.Remove(this);
     }
 

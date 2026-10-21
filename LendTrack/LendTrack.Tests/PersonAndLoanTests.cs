@@ -24,10 +24,10 @@ public class PersonAndLoanTests
         // Arrange
         string name = "Test Person";
         Person person = new(name);
-        HeavyItem heavyItem = new("Heavy Item", "A heavy item", ItemType.Electronics);
+        Item testItem = new("Test Item", "An item", ItemType.Electronics, 1);
 
         // Act
-        Loan loan = new(person, heavyItem, new TimeSpan(14, 0, 0, 0));
+        Loan loan = new(person, testItem, new TimeSpan(14, 0, 0, 0));
 
         // Assert
         Assert.Single(person.TakenLoans);
@@ -40,10 +40,10 @@ public class PersonAndLoanTests
         // Arrange
         string name = "Test Person";
         Person person = new(name);
-        LightItem lightItem = new("Light Item", "A light item", ItemType.Tool);
+        Item testItem = new("Light Item", "A light item", ItemType.Tool, 1);
 
         // Act
-        Loan loan = new(person, lightItem, new TimeSpan(14, 0, 0, 0));
+        Loan loan = new(person, testItem, new TimeSpan(14, 0, 0, 0));
 
         // Assert
         Assert.Single(person.TakenLoans);
@@ -56,8 +56,8 @@ public class PersonAndLoanTests
         // Arrange
         string name = "Test Person";
         Person person = new(name);
-        HeavyItem heavyItem = new("Heavy Item", "A heavy item", ItemType.Electronics);
-        Loan loan = new(person, heavyItem, new TimeSpan(14, 0, 0, 0));
+        Item testItem = new("Test Item", "An item", ItemType.Electronics, 1);
+        Loan loan = new(person, testItem, new TimeSpan(14, 0, 0, 0));
 
         // Act
 
@@ -73,8 +73,8 @@ public class PersonAndLoanTests
         // Arrange
         string name = "Test Person";
         Person person = new(name);
-        HeavyItem heavyItem = new("Heavy Item", "A heavy item", ItemType.Electronics);
-        Loan loan = new(person, heavyItem, new TimeSpan(14, 0, 0, 0));
+        Item testItem = new("Test Item", "An item", ItemType.Electronics, 1);
+        Loan loan = new(person, testItem, new TimeSpan(14, 0, 0, 0));
 
         // Act
         loan.UpdateOverdueStatus(DateTime.Now.AddDays(15)); // Simulate checking after 15 days
@@ -89,8 +89,8 @@ public class PersonAndLoanTests
         // Arrange
         string name = "Test Person";
         Person person = new(name);
-        HeavyItem heavyItem = new("Heavy Item", "A heavy item", ItemType.Electronics);
-        Loan loan = new(person, heavyItem, new TimeSpan(14, 0, 0, 0));
+        Item testItem = new("Test Item", "An item", ItemType.Electronics, 1);
+        Loan loan = new(person, testItem, new TimeSpan(14, 0, 0, 0));
 
         // Act
         bool canBorrow = Loan.CanAPersonBorrowItem(person);
@@ -106,17 +106,17 @@ public class PersonAndLoanTests
         string name = "Test Person";
         Person person = new(name);
 
-        HeavyItem heavyItemOne = new("Heavy Item One", "A heavy item", ItemType.Electronics);
-        HeavyItem heavyItemTwo = new("Heavy Item Two", "Another heavy item", ItemType.Electronics);
-        HeavyItem heavyItemThree = new("Heavy Item Three", "Yet another heavy item", ItemType.Electronics);
-        HeavyItem heavyItemFour = new("Heavy Item Four", "A fourth heavy item", ItemType.Electronics);
-        HeavyItem heavyItemFive = new("Heavy Item Five", "A fifth heavy item", ItemType.Electronics);
+        Item testItemOne = new("Test Item One", "An item", ItemType.Electronics, 1);
+        Item testItemTwo = new("Test Item Two", "Another test item", ItemType.Electronics, 1);
+        Item testItemThree = new("Test Item Three", "Yet another test item", ItemType.Electronics, 1);
+        Item testItemFour = new("Test Item Four", "A fourth test item", ItemType.Electronics, 1);
+        Item testItemFive = new("Test Item Five", "A fifth test item", ItemType.Electronics, 1);
 
-        Loan loanOne = new(person, heavyItemOne, new TimeSpan(14, 0, 0, 0));
-        Loan loanTwo = new(person, heavyItemTwo, new TimeSpan(14, 0, 0, 0));
-        Loan loanThree = new(person, heavyItemThree, new TimeSpan(14, 0, 0, 0));
-        Loan loanFour = new(person, heavyItemFour, new TimeSpan(14, 0, 0, 0));
-        Loan loanFive = new(person, heavyItemFive, new TimeSpan(14, 0, 0, 0));
+        Loan loanOne = new(person, testItemOne, new TimeSpan(14, 0, 0, 0));
+        Loan loanTwo = new(person, testItemTwo, new TimeSpan(14, 0, 0, 0));
+        Loan loanThree = new(person, testItemThree, new TimeSpan(14, 0, 0, 0));
+        Loan loanFour = new(person, testItemFour, new TimeSpan(14, 0, 0, 0));
+        Loan loanFive = new(person, testItemFive, new TimeSpan(14, 0, 0, 0));
 
         // Act
         bool canBorrow = Loan.CanAPersonBorrowItem(person);
@@ -131,8 +131,8 @@ public class PersonAndLoanTests
         // Arrange
         string name = "Test Person";
         Person person = new(name);
-        HeavyItem heavyItem = new("Heavy Item", "A heavy item", ItemType.Electronics);
-        Loan loan = new(person, heavyItem, new TimeSpan(14, 0, 0, 0));
+        Item testItem = new("Test Item", "An item", ItemType.Electronics, 1);
+        Loan loan = new(person, testItem, new TimeSpan(14, 0, 0, 0));
         DateTime overdueDate = DateTime.Now.AddDays(15); // Simulate checking after 15 days
 
         // Act
@@ -148,12 +148,12 @@ public class PersonAndLoanTests
         // Arrange
         string name = "Test Person";
         Person person = new(name);
-        HeavyItem heavyItemOne = new("Heavy Item One", "A heavy item", ItemType.Electronics);
-        HeavyItem heavyItemTwo = new("Heavy Item Two", "Another heavy item", ItemType.Electronics);
-        Loan loan = new(person, heavyItemOne, new TimeSpan(14, 0, 0, 0));
+        Item testItemOne = new("Test Item One", "An item", ItemType.Electronics, 1);
+        Item testItemTwo = new("Test Item Two", "Another test item", ItemType.Electronics, 1);
+        Loan loan = new(person, testItemOne, new TimeSpan(14, 0, 0, 0));
 
         // Act
-        bool canBorrow = Loan.CanAPersonBorrowItem(person, heavyItemTwo);
+        bool canBorrow = Loan.CanAPersonBorrowItem(person, testItemTwo);
 
         // Assert
         Assert.True(canBorrow); // The person has not borrowed the item yet
@@ -165,11 +165,11 @@ public class PersonAndLoanTests
         // Arrange
         string name = "Test Person";
         Person person = new(name);
-        HeavyItem heavyItem = new("Heavy Item", "A heavy item", ItemType.Electronics);
-        Loan loan = new(person, heavyItem, new TimeSpan(14, 0, 0, 0));
+        Item testItem = new("Test Item", "An item", ItemType.Electronics, 1);
+        Loan loan = new(person, testItem, new TimeSpan(14, 0, 0, 0));
 
         // Act
-        bool canBorrow = Loan.CanAPersonBorrowItem(person, heavyItem);
+        bool canBorrow = Loan.CanAPersonBorrowItem(person, testItem);
 
         // Assert
         Assert.False(canBorrow); // The person has already borrowed the item
@@ -181,15 +181,15 @@ public class PersonAndLoanTests
         // Arrange
         string name = "Test Person";
         Person person = new(name);
-        HeavyItem heavyItem = new("Heavy Item", "A heavy item", ItemType.Electronics);
-        Loan loan = new(person, heavyItem, new TimeSpan(14, 0, 0, 0));
+        Item testItem = new("Test Item", "An item", ItemType.Electronics, 1);
+        Loan loan = new(person, testItem, new TimeSpan(14, 0, 0, 0));
 
         // Simulate the loan being overdue by checking after 15 days
         loan.UpdateOverdueStatus(DateTime.Now.AddDays(15));
         Assert.True(loan.OverdueStatus); // Ensure the loan is indeed overdue
 
         // Act
-        bool canBorrow = Loan.CanAPersonBorrowItem(person, heavyItem);
+        bool canBorrow = Loan.CanAPersonBorrowItem(person, testItem);
 
         // Assert
         Assert.False(canBorrow); // The person has an overdue item and cannot borrow more
@@ -202,20 +202,20 @@ public class PersonAndLoanTests
         string name = "Test Person";
         Person person = new(name);
 
-        HeavyItem heavyItemOne = new("Heavy Item One", "A heavy item", ItemType.Electronics);
-        HeavyItem heavyItemTwo = new("Heavy Item Two", "Another heavy item", ItemType.Electronics);
-        HeavyItem heavyItemThree = new("Heavy Item Three", "Yet another heavy item", ItemType.Electronics);
-        HeavyItem heavyItemFour = new("Heavy Item Four", "A fourth heavy item", ItemType.Electronics);
-        HeavyItem heavyItemFive = new("Heavy Item Five", "A fifth heavy item", ItemType.Electronics);
+        Item testItemOne = new("Test Item One", "An item", ItemType.Electronics, 1);
+        Item testItemTwo = new("Test Item Two", "Another test item", ItemType.Electronics, 1);
+        Item testItemThree = new("Test Item Three", "Yet another test item", ItemType.Electronics, 1);
+        Item testItemFour = new("Test Item Four", "A fourth test item", ItemType.Electronics, 1);
+        Item testItemFive = new("Test Item Five", "A fifth test item", ItemType.Electronics, 1);
 
-        Loan loanOne = new(person, heavyItemOne, new TimeSpan(14, 0, 0, 0));
-        Loan loanTwo = new(person, heavyItemTwo, new TimeSpan(14, 0, 0, 0));
-        Loan loanThree = new(person, heavyItemThree, new TimeSpan(14, 0, 0, 0));
-        Loan loanFour = new(person, heavyItemFour, new TimeSpan(14, 0, 0, 0));
-        Loan loanFive = new(person, heavyItemFive, new TimeSpan(14, 0, 0, 0));
+        Loan loanOne = new(person, testItemOne, new TimeSpan(14, 0, 0, 0));
+        Loan loanTwo = new(person, testItemTwo, new TimeSpan(14, 0, 0, 0));
+        Loan loanThree = new(person, testItemThree, new TimeSpan(14, 0, 0, 0));
+        Loan loanFour = new(person, testItemFour, new TimeSpan(14, 0, 0, 0));
+        Loan loanFive = new(person, testItemFive, new TimeSpan(14, 0, 0, 0));
 
         // Act
-        bool canBorrow = Loan.CanAPersonBorrowItem(person, heavyItemOne);
+        bool canBorrow = Loan.CanAPersonBorrowItem(person, testItemOne);
 
         // Assert
         Assert.False(canBorrow); // The person has already borrowed the maximum number of items
@@ -227,8 +227,8 @@ public class PersonAndLoanTests
         // Arrange
         string name = "Test Person";
         Person person = new(name);
-        HeavyItem heavyItem = new("Heavy Item", "A heavy item", ItemType.Electronics);
-        Loan loan = new(person, heavyItem, new TimeSpan(14, 0, 0, 0));
+        Item testItem = new("Test Item", "An item", ItemType.Electronics, 1);
+        Loan loan = new(person, testItem, new TimeSpan(14, 0, 0, 0));
 
         // Act
         string personString = person.ToString();
@@ -245,15 +245,15 @@ public class PersonAndLoanTests
         // Arrange
         string name = "Test Person";
         Person person = new(name);
-        HeavyItem heavyItem = new("Heavy Item", "A heavy item", ItemType.Electronics);
-        Loan loan = new(person, heavyItem, new TimeSpan(14, 0, 0, 0));
+        Item testItem = new("Test Item", "An item", ItemType.Electronics, 1);
+        Loan loan = new(person, testItem, new TimeSpan(14, 0, 0, 0));
 
         // Act
         string loanString = loan.ToString();
 
         // Assert
         Assert.Contains(person.Name, loanString);
-        Assert.Contains(heavyItem.Name!, loanString);
+        Assert.Contains(testItem.Name!, loanString);
         Assert.Contains(loan.LoanDate.ToShortDateString(), loanString);
         Assert.Contains(loan.LoanDuration.Days.ToString(), loanString);
     }
@@ -264,11 +264,11 @@ public class PersonAndLoanTests
         // Arrange
         string name = "Test Person";
         Person person = new(name);
-        HeavyItem heavyItem = new("Heavy Item", "A heavy item", ItemType.Electronics);
-        Loan loanOne = new(person, heavyItem, new TimeSpan(14, 0, 0, 0));
+        Item testItem = new("Test Item", "An item", ItemType.Electronics, 1);
+        Loan loanOne = new(person, testItem, new TimeSpan(14, 0, 0, 0));
 
         // Act
-        Action act = () => new Loan(person, heavyItem, new TimeSpan(14, 0, 0, 0));
+        Action act = () => new Loan(person, testItem, new TimeSpan(14, 0, 0, 0));
 
         // Assert
         Assert.Throws<InvalidOperationException>(act);
@@ -295,8 +295,8 @@ public class PersonAndLoanTests
         // Arrange
         string name = "Test Person";
         Person person = new(name);
-        HeavyItem heavyItem = new("Heavy Item", "A heavy item", ItemType.Electronics);
-        Loan loan = new(person, heavyItem, new TimeSpan(14, 0, 0, 0));
+        Item testItem = new("Test Item", "An item", ItemType.Electronics, 1);
+        Loan loan = new(person, testItem, new TimeSpan(14, 0, 0, 0));
 
         // Act
         loan.UpdateOverdueStatus(DateTime.Now.AddDays(15)); // Simulate checking after 15 days
@@ -311,8 +311,8 @@ public class PersonAndLoanTests
         // Arrange
         string name = "Test Person";
         Person person = new(name);
-        HeavyItem heavyItem = new("Heavy Item", "A heavy item", ItemType.Electronics);
-        Loan loan = new(person, heavyItem, new TimeSpan(14, 0, 0, 0));
+        Item testItem = new("Test Item", "An item", ItemType.Electronics, 1);
+        Loan loan = new(person, testItem, new TimeSpan(14, 0, 0, 0));
 
         // Act
         loan.UpdateOverdueStatus(); // Simulate checking after 15 days
@@ -341,13 +341,28 @@ public class PersonAndLoanTests
         // Arrange
         string name = "Test Person";
         Person person = new(name);
-        HeavyItem heavyItem = new("Heavy Item", "A heavy item", ItemType.Electronics);
-        Loan loan = new(person, heavyItem, new TimeSpan(14, 0, 0, 0));
+        Item testItem = new("Test Item", "An item", ItemType.Electronics, 1);
+        Loan loan = new(person, testItem, new TimeSpan(14, 0, 0, 0));
 
         // Act
         int hashCode = loan.GetHashCode();
 
         //Assert
         Assert.Equal(loan.Id.GetHashCode(), hashCode);
+    }
+
+    [Fact]
+    public void ReturnItemTest()
+    {
+        // Arrange
+        string name = "Test Person";
+        Person person = new(name);
+        Item testItem = new("Test Item", "An item", ItemType.Electronics, 1);
+        Loan loan = new(person, testItem, new TimeSpan(14, 0, 0, 0));
+        // Act
+        loan.ReturnItem();
+        // Assert
+        Assert.True(testItem.IsAvailable); // The item should be available after returning
+        Assert.Empty(person.TakenLoans); // The person's taken loans should be empty after returning the item
     }
 }
